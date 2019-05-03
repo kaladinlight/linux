@@ -1,0 +1,208 @@
+[colors]
+background = ${xrdb:background:#222}
+foreground = ${xrdb:foreground:#222}
+foreground-alt = #555
+primary = #ffb52a
+secondary = #e60053
+alert = #bd2c40
+
+[bar/dracula]
+width = 100%
+height = 50
+offset-x = 0
+offset-y = 0
+radius = 0.0
+fixed-center = true
+
+monitor = DP-1
+monitor-fallback = eDP-1
+
+background = ${xrdb:background}
+foreground = ${xrdb:foreground:#FF0000}
+
+line-size = 4
+line-color = #f00
+
+border-size = 4
+border-color = ${xrdb:color8:#FF000000}
+
+padding-left = 2
+padding-right = 3
+
+module-margin-left = 1
+module-margin-right = 2
+
+font-0 = SF Pro Display:style=semibold:antialias=true:pixelsize=14;1
+font-1 = Material Icons:size=14;2
+font-2 = M+ 1mn:style=bold:pixelsize=14;1
+;font-3 = "Wuncon Siji:style=bold:pixelsize=20:antialias=false;1"
+
+modules-left = i3 xwindow
+modules-center =
+modules-right = volume memory cpu date battery powermenu
+
+tray-position = center
+tray-padding = 0
+tray-maxsize = 20
+
+cursor-click = pointer
+cursor-scroll = ns-resize
+
+[module/i3]
+type = internal/i3
+format = <label-state> <label-mode>
+index-sort = true
+wrapping-scroll = false
+strip-wsnumbers = true
+
+label-mode-padding = 2
+label-mode-foreground = #000
+label-mode-background = ${colors.primary}
+
+label-focused = %name%
+label-focused-background = ${xrdb:background:#ff0000}
+label-focused-underline= ${xrdb:color9:#ff0000}
+label-focused-padding = 1
+
+label-unfocused = %name%
+label-unfocused-padding = 1
+
+label-visible = %name%
+label-visible-background = ${xrdb:background:#ff0000}
+label-visible-underline = ${xrdb:color9:#ff0000}
+label-visible-padding = 1
+
+label-urgent = %name%
+label-urgent-background = ${xrdb:color1:#ff0000}
+label-urgent-padding = 1
+
+[module/xwindow]
+type = internal/xwindow
+label = %title:0:30:...%
+
+[module/battery]
+
+type = internal/battery
+battery = BAT0
+adapter = AC
+full-at = 98
+
+format-charging = <animation-charging> <label-charging>
+format-charging-underline = ${xrdb:color3}
+animation-charging-0 = 
+animation-charging-1 = 
+animation-charging-foreground = ${colors.foreground-alt}
+animation-charging-framerate = 750
+
+format-discharging = <label-discharging>
+format-discharging-underline = #FFB86C
+label-discharging =  %percentage%%
+
+format-full-prefix = " "
+format-full-underline = ${xrdb:color2}
+format-full-prefix-foreground = ${colors.foreground-alt}
+
+ramp-capacity-foreground = ${colors.foreground-alt}
+
+[module/cpu]
+type = internal/cpu
+interval = 2
+format-prefix = " "
+format-prefix-foreground = ${colors.foreground-alt}
+format-underline = ${xrdb:color5}
+label = %percentage%%
+
+[module/memory]
+type = internal/memory
+interval = 2
+format-prefix = " "
+format-prefix-foreground = ${colors.foreground-alt}
+format-underline = ${xrdb:color6}
+label = %percentage_used%%
+
+[module/date]
+type = internal/date
+interval = 1
+
+date =
+date-alt = "%m-%d-%Y"
+
+time = %I:%M %p
+time-alt = %I:%M:%S %p
+
+format-prefix = 
+format-prefix-foreground = ${colors.foreground-alt}
+format-underline = ${xrdb:color4}
+
+label = %date% %time%
+
+[module/powermenu]
+type = custom/menu
+
+format-spacing = 1
+
+label-open = 
+label-open-foreground = ${xrdb:color1}
+label-close = cancel
+label-close-foreground = ${xrdb:color1}
+label-separator = |
+label-separator-foreground = ${colors.foreground-alt}
+
+menu-0-0 = reboot
+menu-0-0-exec = menu-open-1
+menu-0-1 = power off
+menu-0-1-exec = menu-open-2
+menu-0-2 = log off
+menu-0-2-exec = menu-open-3
+
+menu-1-0 = cancel
+menu-1-0-exec = menu-open-0
+menu-1-1 = reboot
+menu-1-1-exec = sudo reboot
+
+menu-2-0 = power off
+menu-2-0-exec = sudo poweroff
+menu-2-1 = cancel
+menu-2-1-exec = menu-open-0
+
+menu-3-0 = log off
+menu-3-0-exec = pkill -KILL -u $USER
+menu-3-1 = cancel
+menu-3-1-exec = menu-open-0
+
+[module/volume]
+type = internal/alsa
+
+format-volume = <label-volume> <bar-volume>
+label-volume = " "
+label-volume-foreground = ${xrdb:color2:#00ff00}
+
+format-muted-prefix = " "
+format-muted-foreground = ${colors.foreground-alt}
+label-muted = sound muted
+
+bar-volume-width = 10
+bar-volume-foreground-0 = ${xrdb:color2}
+bar-volume-foreground-1 = ${xrdb:color2}
+bar-volume-foreground-2 = ${xrdb:color2}
+bar-volume-foreground-3 = ${xrdb:color2}
+bar-volume-foreground-4 = ${xrdb:color2}
+bar-volume-foreground-5 = ${xrdb:color3}
+bar-volume-foreground-6 = ${xrdb:color1}
+bar-volume-gradient = false
+bar-volume-indicator = ━
+bar-volume-indicator-font = 1
+bar-volume-fill = ━
+bar-volume-fill-font = 1
+bar-volume-empty = ━
+bar-volume-empty-font = 1
+bar-volume-empty-foreground = ${xrdb:color0}
+
+[settings]
+screenchange-reload = true
+compositing-background = xor
+compositing-foreground = source
+
+[global/wm]
+margin-top = 0
+margin-bottom = 0
